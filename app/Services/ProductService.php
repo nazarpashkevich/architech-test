@@ -1,8 +1,8 @@
 <?php
 
-namespace Services;
+namespace App\Services;
 
-use Product;
+use App\Data\Product;
 
 class ProductService
 {
@@ -15,11 +15,11 @@ class ProductService
 
     protected function initProducts(): void
     {
-        $products = json_decode(file_get_contents(__DIR__ . '/../products.json'), true) ?? [];
+        $products = json_decode(file_get_contents(__DIR__ . '/../../database/products.json'), true) ?? [];
         if (is_array($products)) {
             foreach ($products as $product) {
                 try {
-                    $product = new \Product(...$product);
+                    $product = new \App\Data\Product(...$product);
                     $this->products[$product->code] = $product;
                 } catch (\Exception) {
                     continue; // invalid rule

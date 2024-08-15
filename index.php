@@ -1,6 +1,8 @@
 <?php
 
 // load everything manually
+use App\Basket;
+
 require 'autoload.php';
 
 $basket = Basket::make();

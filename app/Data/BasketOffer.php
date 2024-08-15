@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Data;
+
 class BasketOffer
 {
 
@@ -7,7 +9,6 @@ class BasketOffer
         public string $productCode,
         public string $processor,
         public array $data = [],
-    )
-    {
+    ) {
     }
 }

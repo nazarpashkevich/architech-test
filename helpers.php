@@ -1,5 +1,7 @@
 <?php
 
+use App\Data\BasketTotal;
+
 function formatTotal(BasketTotal $total, int $i = 1): void
 {
     echo "-----\n";

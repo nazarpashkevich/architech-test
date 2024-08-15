@@ -1,26 +1,26 @@
 <?php
 
-namespace Factories;
+namespace App\Factories;
 
 class BasketTotalFactory
 {
 
-    protected function __construct(protected \Basket $basket)
+    protected function __construct(protected \App\Basket $basket)
     {
     }
 
-    public static function handle(\Basket $basket): \BasketTotal
+    public static function handle(\App\Basket $basket): \App\Data\BasketTotal
     {
         return (new self($basket))->calculate();
     }
 
-    protected function calculate(): \BasketTotal
+    protected function calculate(): \App\Data\BasketTotal
     {
         $productsPrice = $this->calculateProductsTotal();
         // delivery price depends on the products
         $delivery = $this->calculateDelivery($productsPrice);
 
-        return new \BasketTotal(
+        return new \App\Data\BasketTotal(
             $productsPrice,
             $delivery,
             $productsPrice + $delivery

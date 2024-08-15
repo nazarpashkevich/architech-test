@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Data;
+
 class BasketProduct
 {
 
@@ -8,15 +10,15 @@ class BasketProduct
         public string $code,
         public int $price, // can be Money type, price per 1 item
         public int $quantity = 1,
-    )
-    {}
+    ) {
+    }
 
     public function makeStorable(): array
     {
         return [
-          'name' => $this->name,
-          'code' => $this->code,
-          'quantity' => $this->quantity,
+            'name'     => $this->name,
+            'code'     => $this->code,
+            'quantity' => $this->quantity,
         ];
     }
 

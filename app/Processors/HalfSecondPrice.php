@@ -2,8 +2,8 @@
 
 namespace Processors;
 
-use Basket;
-use Contracts\BasketOfferProcessor;
+use App\Basket;
+use App\Contracts\BasketOfferProcessor;
 
 class HalfSecondPrice implements BasketOfferProcessor
 {
@@ -11,7 +11,7 @@ class HalfSecondPrice implements BasketOfferProcessor
     {
     }
 
-    public function calculate(Basket $basket, \BasketProduct $product): int
+    public function calculate(Basket $basket, \App\Data\BasketProduct $product): int
     {
         // every second product is with half price
 

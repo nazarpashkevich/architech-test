@@ -1,14 +1,20 @@
 <?php
 
-use Resolvers\BasketOfferResolver;
-use Services\ProductService;
+namespace App;
+
+use App\Data\BasketOffer;
+use App\Data\BasketProduct;
+use App\Data\BasketTotal;
+use App\Data\Product;
+use App\Resolvers\BasketOfferResolver;
+use App\Services\ProductService;
 
 class Basket
 {
     protected static ?self $instance = null;
 
     /**
-     * @var \BasketProduct[]
+     * @var \App\Data\BasketProduct[]
      */
     protected array $items;
 
@@ -63,7 +69,7 @@ class Basket
     }
 
     /**
-     * @return \BasketProduct[]
+     * @return \App\Data\BasketProduct[]
      */
     public function items(): array
     {
@@ -73,12 +79,13 @@ class Basket
     protected function calcDeliveryRates(): void
     {
         // can be extracted from database
-        $this->deliveryRates = json_decode(file_get_contents(__DIR__ . '/delivery-rates.json'), true) ?? [];
+        $this->deliveryRates = json_decode(file_get_contents(__DIR__ . '/../database/delivery-rates.json'), true) ?? [];
     }
 
     protected function calcOfferRules(): void
     {
-        $offers = json_decode(file_get_contents(__DIR__ . '/offers-rules.json'), true) ?? [];
+        // can be extracted from database
+        $offers = json_decode(file_get_contents(__DIR__ . '/../database/offers-rules.json'), true) ?? [];
         if (is_array($offers)) {
             foreach ($offers as $offer) {
                 try {
@@ -145,7 +152,7 @@ class Basket
 
     public function total(): BasketTotal
     {
-        return \Factories\BasketTotalFactory::handle($this);
+        return \App\Factories\BasketTotalFactory::handle($this);
     }
 
     public function getProductPrice(BasketProduct $product): int

@@ -1,8 +1,8 @@
 <?php
 
-namespace Resolvers;
+namespace App\Resolvers;
 
-use Contracts\BasketOfferProcessor;
+use App\Contracts\BasketOfferProcessor;
 
 class BasketOfferResolver
 {
@@ -12,6 +12,7 @@ class BasketOfferResolver
     public static function resolve(string $processor, array $data): ?BasketOfferProcessor
     {
         $class = "\Processors\\$processor";
+
         if (class_exists($class)) {
             return new $class($data);
         }

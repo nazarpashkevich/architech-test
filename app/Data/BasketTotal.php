@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Data;
+
 class BasketTotal
 {
     public function __construct(
